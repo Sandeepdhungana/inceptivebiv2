@@ -140,6 +140,34 @@
   animation: dot-flashing 1s infinite linear alternate;
 }
 
+.chat-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 5px;
+}
+
+.chat-btn:hover {
+  background-color: #0056b3;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.chat-btn:active {
+  background-color: #004085;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.chat-btn:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+
 @keyframes dot-flashing {
   0% {
     opacity: 1;
