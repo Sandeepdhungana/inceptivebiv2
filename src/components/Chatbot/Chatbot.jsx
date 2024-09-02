@@ -101,41 +101,38 @@ export default function Chatbot() {
         case "all":
           responseMessage = (
             <>
-              Certainly, I shall assist you with this
-              <ul>
-                <li>
-                  Database/Dataset:{" "}
-                  <a
-                    href="https://superset.edtechmarks.com/explore/?datasource_type=table&datasource_id=18"
-                    target="_blank"
-                  >
-                    {" "}
-                    TermAid-Report_API_Main_SAP_qry
+              <li>
+                Database/Dataset:{" "}
+                <a
+                  href="https://superset.edtechmarks.com/explore/?datasource_type=table&datasource_id=18"
+                  target="_blank"
+                >
+                  {" "}
+                  TermAid-Report_API_Main_SAP_qry
+                </a>
+              </li>
+              <li>
+                Charts:{" "}
+                <>
+                  <a href="https://superset.edtechmarks.com/explore/?slice_id=3">
+                    TermAid-Report_API_Crosstab1
                   </a>
-                </li>
-                <li>
-                  Charts:{" "}
-                  <>
-                    <a href="https://superset.edtechmarks.com/explore/?slice_id=3">
-                      TermAid-Report_API_Crosstab1
-                    </a>
-                  </>
-                  ,<br />
-                  <a href="https://superset.edtechmarks.com/explore/?slice_id=2">
-                    TermAid-Report_API_Combination Chart2
-                  </a>
-                  ,<br />
-                  <a href="https://superset.edtechmarks.com/explore/?slice_id=1">
-                    TermAid-Report_API_List1
-                  </a>
-                </li>
-                <li>
-                  Dashboard:{" "}
-                  <a href="https://superset.edtechmarks.com/superset/dashboard/1/">
-                    Dashboard
-                  </a>
-                </li>
-              </ul>
+                </>
+                ,<br />
+                <a href="https://superset.edtechmarks.com/explore/?slice_id=2">
+                  TermAid-Report_API_Combination Chart2
+                </a>
+                ,<br />
+                <a href="https://superset.edtechmarks.com/explore/?slice_id=1">
+                  TermAid-Report_API_List1
+                </a>
+              </li>
+              <li>
+                Dashboard:{" "}
+                <a href="https://superset.edtechmarks.com/superset/dashboard/1/">
+                  Dashboard
+                </a>
+              </li>
             </>
           );
           break;
