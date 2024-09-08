@@ -1,13 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { fetchAuthSession, signInWithRedirect } from "aws-amplify/auth";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return <Navigate to="/" replace />;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const location = useLocation()
+  console.log(location.state)
+  
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const session = await fetchAuthSession();
+        if (session?.tokens.accessToken) {
+          setIsAuthenticated(true);
+        }
+      } catch {
+        setIsAuthenticated(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
-  return children;
+  return <>{isAuthenticated ? children : signInWithRedirect()}</>;
 };
 
 export default ProtectedRoute;

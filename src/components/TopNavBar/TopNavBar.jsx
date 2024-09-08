@@ -5,10 +5,14 @@ import logo from "../../assets/logo.png";
 import istudio from "../../assets/istudio.png";
 import ibuilder from "../../assets/ibuilder.png";
 import { RiArrowDownWideLine } from "react-icons/ri";
+import { Tooltip } from "antd"; // Import Tooltip from antd
+import { LogoutOutlined } from "@ant-design/icons"; // Import Logout icon from antd
+import { useAuthenticator } from "@aws-amplify/ui-react";
 
-const TopNavBar = ({ children, onMenuClick }) => {
+const TopNavBar = ({ children }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
+  const { signOut } = useAuthenticator((context) => [context.user]);
 
   const handleMouseEnter = () => {
     setShowDropdown(true);
@@ -36,9 +40,17 @@ const TopNavBar = ({ children, onMenuClick }) => {
     },
     {
       label: (
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           <img src={ibuilder} alt="iBuilder" className="menu-icon ibuilder" />
-          <RiArrowDownWideLine  style={{ marginLeft: "10px", fontSize: "20px" }} />
+          <RiArrowDownWideLine
+            style={{ marginLeft: "10px", fontSize: "20px" }}
+          />
         </div>
       ),
       children: [
@@ -49,8 +61,8 @@ const TopNavBar = ({ children, onMenuClick }) => {
         },
         {
           label: "Model Builder",
-          url: "http://44.204.61.35:5000",
-          newTab:true
+          url: "http://3.83.110.105:5000",
+          newTab: true,
         },
       ],
     },
@@ -60,7 +72,7 @@ const TopNavBar = ({ children, onMenuClick }) => {
     <>
       <div className="navbar">
         <div className="logo">
-          <Link to="/home" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <img
               src={logo}
               alt="InceptiveBI Logo"
@@ -81,7 +93,8 @@ const TopNavBar = ({ children, onMenuClick }) => {
                 <button
                   className="nav-button"
                   onClick={() =>
-                    !item.children && handleMenuClick(item.url, item.showIframe, item.newTab)
+                    !item.children &&
+                    handleMenuClick(item.url, item.showIframe, item.newTab)
                   }
                 >
                   {item.label}
@@ -93,7 +106,11 @@ const TopNavBar = ({ children, onMenuClick }) => {
                         key={idx}
                         className="dropdown-button"
                         onClick={() =>
-                          handleMenuClick(child.url, child.showIframe, child.newTab)
+                          handleMenuClick(
+                            child.url,
+                            child.showIframe,
+                            child.newTab
+                          )
                         }
                       >
                         {child.label}
@@ -103,6 +120,12 @@ const TopNavBar = ({ children, onMenuClick }) => {
                 )}
               </div>
             ))}
+            <Tooltip title="Sign Out">
+              <LogoutOutlined
+                onClick={signOut}
+                style={{ fontSize: "24px", marginLeft: "20px" }}
+              />
+            </Tooltip>
           </div>
         </div>
       </div>

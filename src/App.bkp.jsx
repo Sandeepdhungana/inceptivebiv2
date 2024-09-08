@@ -1,19 +1,35 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
+import CommonNav from "./components/CommonNav/CommonNav";
+import Login from "./screens/LoginScreen/LoginScreen";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import DataVisualization from "./screens/DataVisualization/DataVisualization";
 import TopNavBar from "./components/TopNavBar/TopNavBar";
+import { getUserDetails } from "./state/user/userSlice";
+import { useDispatch } from "react-redux";
 import DataModelling from "./screens/DataModelling/DataModelling";
 
-
 const App = () => {
+  const [currentUrl, setCurrentUrl] = useState("");
+  const dispatch = useDispatch();
+  
+
+  const handleMenuClick = (url) => {
+    setCurrentUrl(url);
+  };
+
   return (
     <Router>
       <Routes>
         <Route
-          path="/"
+          path="/home"
           element={
             <ProtectedRoute>
               <TopNavBar>
@@ -37,14 +53,14 @@ const App = () => {
           path="/data-modelling"
           element={
             <ProtectedRoute>
-              <TopNavBar>
+              <TopNavBar onMenuClick={handleMenuClick}>
                 <DataModelling />
               </TopNavBar>
             </ProtectedRoute>
           }
         />
 
-        {/* <Route path="/" element={<Login />} /> */}
+        <Route path="/" element={<Login />} />
       </Routes>
     </Router>
   );
