@@ -8,8 +8,8 @@ export const awsConfig = {
         oauth: {
           domain: "test-poolsa.auth.us-east-1.amazoncognito.com",
           scopes: ["email", "openid", "profile"],
-          redirectSignIn: ["https://inceptivebi.com/"],
-          redirectSignOut: ["https://inceptivebi.com/"],
+          redirectSignIn: ["https://inceptivebi.com/","https://www.inceptivebi.com/"],
+          redirectSignOut: ["https://inceptivebi.com/","https://www.inceptivebi.com/"],
           responseType: "code",       
         },
       },

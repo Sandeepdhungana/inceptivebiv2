@@ -61,7 +61,7 @@ const TopNavBar = ({ children }) => {
         },
         {
           label: "Model Builder",
-          url: "http://3.83.110.105:5000",
+          url: "https://dm.inceptivebi.com/",
           newTab: true,
         },
       ],
